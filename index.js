@@ -15,6 +15,7 @@ import { spawn } from "child_process"
 import path from "path"
 import { fileURLToPath } from "url"
 import { watchFile, unwatchFile } from "fs"
+import http from "http" // Module tambahan untuk server HTTP
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 let childProcess = null
@@ -57,5 +58,21 @@ function start(file) {
         }
     })
 }
+
+// Server HTTP untuk cek status health
+const server = http.createServer((req, res) => {
+    if (req.method === "GET" && req.url === "/") {
+        res.writeHead(200, { "Content-Type": "text/plain" })
+        res.end("Aplikasi telah berjalan\n")
+    } else {
+        res.writeHead(404, { "Content-Type": "text/plain" })
+        res.end("Halaman tidak ditemukan\n")
+    }
+})
+
+// Listen di port 8080
+server.listen(8080, () => {
+    console.log("Health check server berjalan di http://localhost:8080")
+})
 
 start("client.js")
