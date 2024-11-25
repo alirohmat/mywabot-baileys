@@ -10,7 +10,7 @@ export default {
     /* database setting */
     db: {
         local: "mywadb.json",
-        mongo: "url"
+        mongo: "mongodb+srv://Baileys:senori8899@clusterbaileys.oeipx.mongodb.net/?retryWrites=true&w=majority&appName=Clusterbaileys"
     }
 
 }
