@@ -3,7 +3,7 @@ export default (handler) => {
         cmd: ['blackbox', 'bb'],
         tags: 'ai',
         desc: 'Chatgpt from blackbox.ai',
-        isLimit: true,
+        isOwner: true,
         run: async (m, { func }) => {
             if (!m.quoted && !m.text) {
                 return m.reply('Silahkan masukan pertanyaan anda\ncontoh: .blackbox siapa kamu', true)
